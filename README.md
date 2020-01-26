@@ -1,0 +1,2 @@
+# codewars
+try codewars
