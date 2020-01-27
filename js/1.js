@@ -144,72 +144,101 @@ function likes(names) {
 }
 
 function deleteNth(arr, n) {
-    
-    //if (n < 2) return "error";
 
     let objArr = {};
     let nArr = [];
 
     for (const item of arr) {
-        
-        if (!(item in objArr))objArr[item] = 0;
-        console.log(objArr);
-        
+
+        if (!(item in objArr)) objArr[item] = 0;
 
         if (objArr[item] > n - 1) continue;
-        console.log(objArr);
-        nArr.push(item);
-        objArr[item] ++;
-        console.log(objArr);
 
+        nArr.push(item);
+        objArr[item]++;
     }
     return nArr;
 }
 
-console.log(deleteNth([1,1,3,3,7,2,2,2,2], 3));//, [1, 1, 3, 3, 7, 2, 2, 2])
 
-console.log(deleteNth([1, 1, 1, 1], 2)); // return [1,1]
+function array_diff(a, b) {
+    let nArr = [];
 
-console.log(deleteNth([20, 37, 20, 21], 1)); // return [20,37,21]
+    if (a.length < 1) return a;
 
-/* Не правильная функция лохопедро!!!
-function deleteNth(arr, n) {
-    let unqArr = [];
-    for (const key of arr) {
-        if (!unqArr.includes(key)) {
-            unqArr.push(key);
-        }
+    for (const item of a) {
+
+        if (!b.includes(item)) nArr.push(item);
     }
-    if (n < 2) return unqArr;
 
-    let resArr = [];
-
-    for (let i = 0; i < n; i++) {
-        Array.prototype.push.apply(resArr, unqArr);
-    }
-    return resArr;
-}*/
-/*  не правильная функция нубло!!!
-function deleteNth(arr, n) {
-    let mArr = [];
-    let resArr = [];
-    for (const key of arr) {
-        console.log(key);
-        
-        if (!mArr.includes(key)) mArr[key] = 0;
-        //console.log(mArr);
-        
-        if (mArr[key] < n) {
-            resArr.push(arr[key]);
-            mArr[key]++;
-            //console.log(mArr);
-            
-        }
-    }
-    return resArr;
+    return nArr;
 }
 
-//([1,1,3,3,7,2,2,2,2], 3), [1, 1, 3, 3, 7, 2, 2, 2])
+let maxSequence = function (arr) {
+    let sum = 0,
+        x = 0;
+    for (const item of arr) {
+
+        sum += item;
+
+        if (sum < 0) {
+            sum = 0;
+            continue;
+        }
+
+        if ((sum) > x) x = sum;
+    }
+    return x;
+}
+
+function order(words) {
+    if (words.length == 0) return words;   
+
+    let res = '';
+    let cntWords = words.split(" ").length;
+    
+
+    for (let i = 1; i <= cntWords; i++) {
+
+        let regEx = "\s*[a-zA-Z]*" + i + "[a-zA-Z]*\s*";
+
+        res += words.match(regEx)[0];       
+
+        if (i < cntWords) res += ' ';                
+    }
+    return res;
+}
+
+/*function order(words){  
+    return words.split(' ').sort(function(a, b){
+        return a.match(/\d/) - b.match(/\d/);
+     }).join(' ');
+  } 
+
+const order = w => w.split(' ').sort((a, b) => /\d/.exec(a) - /\d/.exec(b)).join(' ');
+*/
+
+
+
+//console.log(order("is2 Thi1s T4est 3a"),"end"); //  -->  "Thi1s is2 3a T4est"
+//console.log(order("4of Fo1r pe6ople g3ood th5e the2"),"end"); //  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
+
+/*var maxSequence = function(arr){
+    return Math.max(0,...arr.reduce((a,c) => [Math.max(a[0]+c || c,c),...a],[]))
+  }
+
+/*const maxSequence = (arr, m = arr[0]) => 
+  arr.length && +!arr.every(n => n < 0) && arr.reduce((a, b) => Math.max(a, m = Math.max(b, m + b)));
+/*
+console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // should be 6: [4, -1, 2, 1]
+/*
+function array_diff(a, b) {
+    return a.filter(e => !b.includes(e));
+}*/
+
+//console.log(array_diff([1,2],[1])); //== [2]
+
+/*console.log(deleteNth([1,1,3,3,7,2,2,2,2], 3));//, [1, 1, 3, 3, 7, 2, 2, 2])
 
 console.log(deleteNth([1, 1, 1, 1], 2)); // return [1,1]
 
