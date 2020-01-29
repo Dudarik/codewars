@@ -1,58 +1,58 @@
 function solution(number) {
-    let sum = 0;
-    for (let i = 0; i < number; i++) {
-        if (i % 3 == 0 || i % 5 == 0) {
-            sum += i;
-        }
+  let sum = 0;
+  for (let i = 0; i < number; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
+      sum += i;
     }
-    return sum;
+  }
+  return sum;
 }
 
 function digital_root(n) {
-    if (n < 10) return n;
+  if (n < 10) return n;
 
-    let sum = 0;
-    let tmp = String(n);
+  let sum = 0;
+  let tmp = String(n);
 
-    for (let item of tmp) sum += +item;
+  for (let item of tmp) sum += +item;
 
-    return digital_root(sum);
+  return digital_root(sum);
 }
 /*function digital_root(n) {
     return (n - 1) % 9 + 1;
 }*/
 //t
 function getSum(a, b) {
-    if (a == b) return a;
+  if (a == b) return a;
 
-    let start, end;
+  let start, end;
 
-    if (a < b) {
-        start = a;
-        end = b;
-    } else if (b < a) {
-        start = b;
-        end = a;
-    }
+  if (a < b) {
+    start = a;
+    end = b;
+  } else if (b < a) {
+    start = b;
+    end = a;
+  }
 
-    let sum = 0;
-    for (let i = start; i <= end; i++) sum += i;
+  let sum = 0;
+  for (let i = start; i <= end; i++) sum += i;
 
-    return sum;
+  return sum;
 }
 
 function getSum2(a, b) {
-    if (a == b) return a;
+  if (a == b) return a;
 
-    let min = a,
-        max = b;
+  let min = a,
+    max = b;
 
-    if (a > b) {
-        min = b;
-        max = a;
-    }
+  if (a > b) {
+    min = b;
+    max = a;
+  }
 
-    return (max - min + 1) * (max + min) / 2;
+  return (max - min + 1) * (max + min) / 2;
 }
 
 
@@ -70,47 +70,47 @@ const GetSum = (a, b) => {
 }*/
 
 function zero() {
-    return 0;
+  return 0;
 }
 
 function one() {
-    return 1;
+  return 1;
 }
 
 function two() {
-    return 2;
+  return 2;
 }
 
 function three() {
-    return 3;
+  return 3;
 }
 
 function four() {
-    return 4;
+  return 4;
 }
 
 function five() {
-    return 5;
+  return 5;
 }
 
 function six() {
-    return 6;
+  return 6;
 }
 
 function seven() {
-    return 7;
+  return 7;
 }
 
 function eight() {
-    return 8;
+  return 8;
 }
 
 function nine() {
-    return 9;
+  return 9;
 }
 
 function plus(dig) {
-    return
+  return
 }
 
 function minus() {}
@@ -126,87 +126,87 @@ six(dividedBy(two())); // must return 3
 
 
 function likes(names) {
-    if (names.length == 0) return "no one likes this";
-    switch (names.length) {
-        case 1:
-            return `${names[0]} likes this`;
-            break;
-        case 2:
-            return `${names[0]} and ${names[1]} like this`;
-            break;
-        case 3:
-            return `${names[0]}, ${names[1]} and ${names[2]} like this`;
-            break;
-        default:
-            return `${names[0]}, ${names[1]} and ${names.length - 2} others like this`;
-            break;
-    }
+  if (names.length == 0) return "no one likes this";
+  switch (names.length) {
+    case 1:
+      return `${names[0]} likes this`;
+      break;
+    case 2:
+      return `${names[0]} and ${names[1]} like this`;
+      break;
+    case 3:
+      return `${names[0]}, ${names[1]} and ${names[2]} like this`;
+      break;
+    default:
+      return `${names[0]}, ${names[1]} and ${names.length - 2} others like this`;
+      break;
+  }
 }
 
 function deleteNth(arr, n) {
 
-    let objArr = {};
-    let nArr = [];
+  let objArr = {};
+  let nArr = [];
 
-    for (const item of arr) {
+  for (const item of arr) {
 
-        if (!(item in objArr)) objArr[item] = 0;
+    if (!(item in objArr)) objArr[item] = 0;
 
-        if (objArr[item] > n - 1) continue;
+    if (objArr[item] > n - 1) continue;
 
-        nArr.push(item);
-        objArr[item]++;
-    }
-    return nArr;
+    nArr.push(item);
+    objArr[item]++;
+  }
+  return nArr;
 }
 
 
 function array_diff(a, b) {
-    let nArr = [];
+  let nArr = [];
 
-    if (a.length < 1) return a;
+  if (a.length < 1) return a;
 
-    for (const item of a) {
+  for (const item of a) {
 
-        if (!b.includes(item)) nArr.push(item);
-    }
+    if (!b.includes(item)) nArr.push(item);
+  }
 
-    return nArr;
+  return nArr;
 }
 
 let maxSequence = function (arr) {
-    let sum = 0,
-        x = 0;
-    for (const item of arr) {
+  let sum = 0,
+    x = 0;
+  for (const item of arr) {
 
-        sum += item;
+    sum += item;
 
-        if (sum < 0) {
-            sum = 0;
-            continue;
-        }
-
-        if ((sum) > x) x = sum;
+    if (sum < 0) {
+      sum = 0;
+      continue;
     }
-    return x;
+
+    if ((sum) > x) x = sum;
+  }
+  return x;
 }
 
 function order(words) {
-    if (words.length == 0) return words;   
+  if (words.length == 0) return words;
 
-    let res = '';
-    let cntWords = words.split(" ").length;
-    
+  let res = '';
+  let cntWords = words.split(" ").length;
 
-    for (let i = 1; i <= cntWords; i++) {
 
-        let regEx = "\s*[a-zA-Z]*" + i + "[a-zA-Z]*\s*";
+  for (let i = 1; i <= cntWords; i++) {
 
-        res += words.match(regEx)[0];       
+    let regEx = "\s*[a-zA-Z]*" + i + "[a-zA-Z]*\s*";
 
-        if (i < cntWords) res += ' ';                
-    }
-    return res;
+    res += words.match(regEx)[0];
+
+    if (i < cntWords) res += ' ';
+  }
+  return res;
 }
 
 /*function order(words){  
@@ -218,6 +218,44 @@ function order(words) {
 const order = w => w.split(' ').sort((a, b) => /\d/.exec(a) - /\d/.exec(b)).join(' ');
 */
 
+function validParentheses(parens) {
+
+  let open = 0;
+
+  for (let i = 0; i < parens.length; i++){
+
+    parens[i] == '(' ? open++ : open--;
+
+    if (open<0) return false;
+
+  } 
+
+  return open == 0;
+}
+
+/*function validParentheses(parens){
+  var re = /\(\)/;
+  while (re.test(parens)) parens = parens.replace(re, "");
+  return !parens;  
+}
+function validParentheses (parens){
+  return parens.split('').reduce(function (level, c) {
+    return level >= 0 ? level + {'(': 1, ')': -1}[c] : -1;
+  }, 0) === 0;
+}
+function validParentheses(parens){
+  while(parens.indexOf('()') != -1){
+    parens = parens.replace('()', '');
+  }
+  return !parens.length;
+}
+*/
+
+
+console.log(validParentheses("()")); //=>  true
+console.log(validParentheses(")(()))")); //=>  false
+console.log(validParentheses("(")); //=>  false
+console.log(validParentheses("(())((()())())")); //=>  true
 
 
 //console.log(order("is2 Thi1s T4est 3a"),"end"); //  -->  "Thi1s is2 3a T4est"
