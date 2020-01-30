@@ -33,7 +33,7 @@ function nextBigger(n) {
   
   for (let i = x.length - 1; i > 0; i--) {
     nx = x.slice(0, i - 1) +
-   x.slice(i - 1, i + 1) //+
+   x.slice(i - 1, i + 1) +
    //x.slice(i - 2, i - 1)  
     console.log(i, nx);
       
