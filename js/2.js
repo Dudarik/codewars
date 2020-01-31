@@ -23,7 +23,6 @@ function nextBigger(n) {
       p = i - 1
       break
     }
-
   }
 
   if (p == -1) return p
@@ -44,7 +43,9 @@ function nextBigger(n) {
       }
     }
   }
+
   if (mmi == null) return -1
+  
   right.splice(mmi, 1)
   right.push(pv)
   right = right.sort();
