@@ -14,39 +14,63 @@ If no bigger number can be composed using those digits, return -1:
 531 ==> -1*/
 
 function nextBigger(n) {
-  let x = String(n)
-  let fl = 0 
 
-  if (x.length < 2) return -1
+  let x = n.toString().split('')
 
-  for (let i = 0; i < x.length; i++) {
-    //.log(i, x[i], x[i+1])
-    if (Number(x[i]) !== Number(x[i + 1])){     
-      fl = 1
-      break
-    }    
-  }
-
-  if (fl == 0) return -1
-  let nx
-  
-  
+  let p = -1;
   for (let i = x.length - 1; i > 0; i--) {
-    nx = x.slice(0, i - 1) +
-   x.slice(i - 1, i + 1) +
-   //x.slice(i - 2, i - 1)  
-    console.log(i, nx);
-      
-    
+    if (+x[i] > +x[i - 1]) {
+      p = i - 1
+      break
+    }
+
   }
 
-  /*let nn = x.slice(0, x.length - 2) +
-    x.slice(x.length - 1, x.length + 1) +
-    x.slice(x.length - 2, x.length - 1)
+  if (p == -1) return p
 
-  return Number(nn) > n ? Number(nn) : -1*/
-  return nx
+  let right = x.splice(p)
+
+  let pv = right.splice(0, 1)[0];
+
+  let mm = null,
+    mmi = null
+
+  for (let i = 0; i < right.length; i++) {
+    if (right[i] > pv) {
+      if (mm == null || right[i] < mm) {
+
+        mm = right[i]
+        mmi = i
+      }
+    }
+  }
+  if (mmi == null) return -1
+  right.splice(mmi, 1)
+  right.push(pv)
+  right = right.sort();
+
+  let ret = +x.concat([mm]).concat(right).join('');
+
+  if (ret < n) return -1
+  return ret;
+/*
+const sortedDigits = n => { let arr = n.toString().split(''); arr.sort((a, b) => b - a); return arr; };
+
+function nextBigger(n){
+  
+  let arr = sortedDigits(n);
+  let max = parseInt(arr.join(''), 10);
+  
+  for(var i = n + 1; i <= max; i++){
+    if(sortedDigits(i).every((x, j) => x === arr[j])){
+      return i;
+    }
+  }
+  
+  return -1;
+}
+*/
 }
 
+console.log(nextBigger(260866))
 
-console.log(nextBigger(513));
