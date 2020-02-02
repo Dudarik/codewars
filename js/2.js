@@ -125,7 +125,7 @@ function sumIntervals(intervals) {
   }
   return  nArr.length  
 }
-console.log(sumIntervals([
+/*console.log(sumIntervals([
   [1, 4],
   [7, 10],
   [3, 5]
@@ -152,3 +152,51 @@ for the coins:
 var countChange = function(money, coins) {
 
 }
+
+/*
+We need to sum big numbers and we require your help.
+
+Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.
+
+Example
+add("123", "321"); -> "444"
+add("11", "99");   -> "110"
+Notes
+The input numbers are big.
+The input is a string of only digits
+The numbers are positives
+*/
+function res(a, b, result, carry, base) {
+  if (a.length == 0 && b.length == 0 && !carry)
+    return result;
+
+  //берем младшие разряды
+  var left = parseInt(a.pop() || '0', 10);
+  var right = parseInt(b.pop() || '0', 10);
+
+  //складываем и добавляем перебор с прошлой итерации
+  var l = left + right + (carry || 0);
+
+  //вызываем для следующих разрядов
+  return res(a, b, l % base + (result || ""), Math.floor(l / base), base);
+}
+
+function add(a, b) {
+  return res(a.toString().split(""), b.toString().split(""), "", "", 10).toString();
+  /*
+  function add (a, b) {
+  var res = '', c = 0
+  a = a.split('')
+  b = b.split('')
+  while (a.length || b.length || c) {
+    c += ~~a.pop() + ~~b.pop()
+    res = c % 10 + res
+    c = c > 9
+  }
+  return res
+}
+add=(a,b,c=a=>('0'.repeat(150)+a).slice(-150),d=c(a),e=c(b))=>[...e].reduceRight(([a,b],c,e)=>[((f=+c+ +d[e]+b)%10)+a,f/10|0],['',0])[0].replace(/^0+/,'')
+*/
+}
+
+console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
