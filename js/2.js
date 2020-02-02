@@ -113,18 +113,42 @@ we can treat the interval as [1, 5], which has a length of 4.
 */
 
 function sumIntervals(intervals) {
-  let sum = 0
+  
+  let nArr = []
 
-  for (const item of intervals) {    
-      sum += (item[1]- item[0])
-      console.log(sum, item[1], item[0] );
-      
+  for (const item of intervals) {
+
+    for (let i = item[0]; i < item[1]; i++) {     
+
+      if (!nArr.includes(i))nArr.push(i)      
+    }
   }
-  console.log(sum);
+  return  nArr.length  
 }
-
-sumIntervals([
+console.log(sumIntervals([
   [1, 4],
   [7, 10],
   [3, 5]
-])
+]))
+
+/*
+Write a function that counts how many different ways you can make change for an amount 
+of money, given an array of coin denominations. For example, there are 3 ways to give change 
+for 4 if you have coins with denomination 1 and 2:
+
+1+1+1+1, 1+1+2, 2+2.
+The order of coins does not matter:
+
+1+1+2 == 2+1+1
+Also, assume that you have an infinite amount of coins.
+
+Your function should take an amount to change and an array of unique denominations 
+for the coins:
+
+  countChange(4, [1,2]) // => 3
+  countChange(10, [5,2,3]) // => 4
+  countChange(11, [5,7]) //  => 0*/
+
+var countChange = function(money, coins) {
+
+}
