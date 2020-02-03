@@ -209,6 +209,21 @@ function order(words) {
     return res;
 }
 
+function rot13(message){
+    return (message+'').replace(/[a-zA-Z]/gi,function(s){
+        return String.fromCharCode(s.charCodeAt(0)+(s.toLowerCase()<'n'?13:-13))
+    })
+}
+
+function permutations(string) {
+    if (string.length < 2) return string;
+    
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        
+    }
+}
+
 /*function order(words){  
     return words.split(' ').sort(function(a, b){
         return a.match(/\d/) - b.match(/\d/);
@@ -278,19 +293,7 @@ console.log(deleteNth([20, 37, 20, 21], 1)); // return [20,37,21]
 // window.location = "mailto:" + gosntfde(s);
 // }
 //
-
-/*function findMissingLetter(array) {
-    let symBase = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-    for (const key of array) {
-        let tmp =
-    }
-
-    return ' ';
-}*/
-
-
-
+*/
 //console.log(getSum(100, 2));
 //console.log(getSum2(100, 2));
 //console.log('Aeyrwbz ', digital_root(132189));
