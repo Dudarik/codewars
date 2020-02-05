@@ -113,17 +113,17 @@ we can treat the interval as [1, 5], which has a length of 4.
 */
 
 function sumIntervals(intervals) {
-  
+
   let nArr = []
 
   for (const item of intervals) {
 
-    for (let i = item[0]; i < item[1]; i++) {     
+    for (let i = item[0]; i < item[1]; i++) {
 
-      if (!nArr.includes(i))nArr.push(i)      
+      if (!nArr.includes(i)) nArr.push(i)
     }
   }
-  return  nArr.length  
+  return nArr.length
 }
 /*console.log(sumIntervals([
   [1, 4],
@@ -149,7 +149,7 @@ for the coins:
   countChange(10, [5,2,3]) // => 4
   countChange(11, [5,7]) //  => 0*/
 
-var countChange = function(money, coins) {
+var countChange = function (money, coins) {
 
 }
 
@@ -200,3 +200,88 @@ add=(a,b,c=a=>('0'.repeat(150)+a).slice(-150),d=c(a),e=c(b))=>[...e].reduceRight
 }
 
 console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
+/*
+In mathematics, the factorial of integer n is written as n!. 
+It is equal to the product of n and every integer preceding it.
+For example: 5! = 1 x 2 x 3 x 4 x 5 = 120
+
+Your mission is simple: write a function that takes an integer n 
+and returns the value of n!.
+
+You are guaranteed an integer argument. For any values outside 
+the non-negative range, return null, nil or None (return an 
+empty string "" in C and C++). For non-negative numbers a full 
+length number is expected for example, 
+return 25! = "15511210043330985984000000" as a string.
+
+For more on factorials, 
+see http://en.wikipedia.org/wiki/Factorial
+
+NOTES:
+
+The use of BigInteger or BigNumber functions has been disabled, 
+this requires a complex solution
+
+I have removed the use of require in the javascript language.
+*/
+
+function mul(x, y) {
+  let xx = String(x).split('').reverse(),
+    yy = String(y).split('').reverse(),
+    tmp = []
+
+  for (let i = 0; i < xx.length; i++) {
+    for (let j = 0; j < yy.length; j++) {
+      let m = xx[i] * yy[j]
+      tmp[i + j] = (tmp[i + j]) ? tmp[i + j] + m : m;
+    }
+  }
+
+  for (let i = 0; i < tmp.length; i++) {
+
+    let num = tmp[i] % 10,
+      move = Math.floor(tmp[i] / 10)
+    tmp[i] = num
+
+    if (tmp[i + 1])
+      tmp[i + 1] += move
+    else if (move != 0)
+      tmp[i + 1] = move
+  }
+  return tmp.reverse().join('')
+}
+
+function factorial(n) {
+  if (n < 1) return null
+  let res = 1
+
+  for (let i = 1; i <= n && i < 22; i++) 
+    res *= i
+
+  if (n > 21) {
+    for (let i = 22; i <= n; i++) {
+      res = mul(res, i)      
+    }    
+  } 
+
+  return String(res)
+
+  /*
+  function factorial(n) {
+  var res = [1];
+  for (var i = 2; i <= n; ++i) {
+    var c = 0;
+    for (var j = 0; j < res.length || c !== 0; ++j) {
+      c += (res[j] || 0) * i;
+      res[j] = c % 10;
+      c = Math.floor(c / 10);
+    }
+  }
+  return res.reverse().join("");
+}
+   */
+}
+
+let st = new Date()
+console.log(factorial(1000));
+console.log(Date.now() - st + 'ms');
