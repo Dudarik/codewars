@@ -199,7 +199,7 @@ add=(a,b,c=a=>('0'.repeat(150)+a).slice(-150),d=c(a),e=c(b))=>[...e].reduceRight
 */
 }
 
-console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
+//console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
 /*
 In mathematics, the factorial of integer n is written as n!. 
 It is equal to the product of n and every integer preceding it.
@@ -255,14 +255,14 @@ function factorial(n) {
   if (n < 1) return null
   let res = 1
 
-  for (let i = 1; i <= n && i < 22; i++) 
+  for (let i = 1; i <= n && i < 22; i++)
     res *= i
 
   if (n > 21) {
     for (let i = 22; i <= n; i++) {
-      res = mul(res, i)      
-    }    
-  } 
+      res = mul(res, i)
+    }
+  }
 
   return String(res)
 
@@ -282,6 +282,53 @@ function factorial(n) {
    */
 }
 
-let st = new Date()
-console.log(factorial(1000));
-console.log(Date.now() - st + 'ms');
+//let st = new Date()
+//console.log(factorial(1000));
+//console.log(Date.now() - st + 'ms');
+
+/*
+Task
+You are given a string s. Every letter in s appears once.
+
+Consider all strings formed by rearranging the letters in s. 
+After ordering these strings in dictionary order, 
+return the middle term. (If the sequence has a even length n, 
+define its middle term to be the (n/2)th term.)
+
+Example
+For s = "abc", the result should be "bac". The permutations 
+in order are: "abc", "acb", "bac", "bca", "cab", "cba" 
+So, The middle term is "bac".
+
+Input/Output
+[input] string s
+
+unique letters (2 <= length <= 26)
+
+[output] a string
+
+middle permutation.
+*/
+
+function middlePermutation(s) {
+  let nArr = [s]
+
+  s = s.split('').reverse()
+  console.log(s);
+  
+  s.reduce((v, item, index) => {
+    console.log(v, item, index);
+    
+    /*if (index < s.length) {
+      let t = s[index - 1]
+      s[index - 1] = s[index]
+      s[index] = t
+      console.log(index)
+      
+      nArr.push(s.join(''))
+    }*/
+  })
+
+  console.log(nArr);
+}
+middlePermutation('abc')
