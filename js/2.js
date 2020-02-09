@@ -382,4 +382,4 @@ function middlePermutation(s) {
   return nArr[Math.ceil(lenS / 2)]
 }
 
-console.log(middlePermutation('abcdefghij'))
+console.log(middlePermutation('abcd'))
