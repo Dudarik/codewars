@@ -310,25 +310,76 @@ unique letters (2 <= length <= 26)
 middle permutation.
 */
 
+
+function fact(x) {
+  let res = 1
+  for (let i = 1; i <= x; i++) res *= i
+  return res
+}
+
+function swap(a, b) {
+  let t = a
+  a = b
+  b = t
+}
+
+/*function findCeil(arr, first, l, h) {
+  let ceilId = l
+
+  for (let i = l + 1; i < h; i++) {
+    if (arr[i] > first && arr[i] < arr[ceilId]) {
+      seilId = i;
+    }
+  }
+  return ceilId
+}*/
+
+/*Python
+from itertools import permutations
+
+def middle_permutation(string):
+  """
+  Get the middle permutation of a sorted
+  list of possible string permutations.
+  """
+  perms = [''.join(perm) for perm in
+           permutations(string)]
+  perms.sort()
+  mid = len(perms)/2
+  
+  if len(perms) % 2:
+      return perms[int(mid+0.5)]
+  else:
+      return perms[int(mid)-1]
+
+*/
+
 function middlePermutation(s) {
+
   let nArr = [s]
+  let id = 0
 
   s = s.split('').reverse()
-  console.log(s);
-  
-  s.reduce((v, item, index) => {
-    console.log(v, item, index);
-    
-    /*if (index < s.length) {
-      let t = s[index - 1]
-      s[index - 1] = s[index]
-      s[index] = t
-      console.log(index)
-      
-      nArr.push(s.join(''))
-    }*/
-  })
 
-  console.log(nArr);
+
+  let lenS = s.length,
+    posPerm = fact(s.length)
+  console.log(s);
+
+  for (let i = 0; i < posPerm - 1; i++) {
+
+    let tmp = s[id]
+    s[id] = s[id + 1]
+    s[id + 1] = tmp
+    nArr.push(s.reverse().join(''))
+    id++
+    s.reverse()
+    if (id == lenS - 1) {
+      id = 0
+    }
+  }
+  console.log(nArr.sort());
+  return nArr[Math.ceil(lenS / 2)]
 }
-middlePermutation('abc')
+
+console.log(middlePermutation('abcdefghij'))
