@@ -382,4 +382,63 @@ function middlePermutation(s) {
   return nArr[Math.ceil(lenS / 2)]
 }
 
-console.log(middlePermutation('abcd'))
+function perm(arr) {
+  if (arr.length > 1) {
+
+      let beg = arr[0];
+      let arr1 = perm(arr.slice(1));
+      let arr2 = [];
+      let l = arr1[0].length;
+
+      for(let i=0; i < arr1.length; i++) 
+          for(let j=0; j <= l; j++) 
+              arr2.push(arr1[i].slice(0, j).concat(beg, arr1[i].slice(j)));
+      return arr2;
+  } else return [arr];
+}
+/**************************************** */
+function make(arr, el) {
+  var i, i_m, item;
+  var len = arr.length;
+  var res = [];
+
+  for(i = len; i >= 0; i--) {
+    res.push(
+      ([]).concat(
+        arr.slice(0, i),
+        [el],
+        arr.slice(i, i_m)
+      )
+    );
+  }
+
+  return res;
+}
+
+function combinations(arr) {
+  var prev, curr, el, i;
+  var len = arr.length;
+
+  curr = [[arr[0]]];
+
+  for(i = 1; i < len; i++) {
+    el = arr[i];
+    prev = curr;
+    curr = [];
+
+    prev.forEach(function(item) {
+      curr = curr.concat(
+        make(item, el)
+      );
+    });
+  }
+
+  return curr;
+}
+/******************************************************************** */
+m = 'abcd'
+console.log( combinations(m) )
+
+//console.log(perm('abcdef'));
+
+//console.log(middlePermutation('abcd'))
