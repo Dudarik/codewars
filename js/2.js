@@ -354,46 +354,63 @@ def middle_permutation(string):
 
 */
 
-function middlePermutation(s) {
+function permut(s) {
+  let nArr = []   
 
-  let nArr = [s]
-  let id = 0
-
-  s = s.split('').reverse()
-
-
-  let lenS = s.length,
-    posPerm = fact(s.length)
-  console.log(s);
-
-  for (let i = 0; i < posPerm - 1; i++) {
-
-    let tmp = s[id]
-    s[id] = s[id + 1]
-    s[id + 1] = tmp
-    nArr.push(s.reverse().join(''))
-    id++
-    s.reverse()
-    if (id == lenS - 1) {
-      id = 0
-    }
+  for (let i = 0; i < s.length; i++) {    
+    let tm = permut(s.slice(0, i).concat(s.slice(i+1)))    
+    if(!tm.length){
+      nArr.push(s[i])
+    }else{
+      for (let j = 0; j < tm.length; j++) {
+        nArr.push(s[i].concat(tm[j]))        
+      }
+    }    
   }
-  console.log(nArr.sort());
-  return nArr[Math.ceil(lenS / 2)]
+  return nArr
 }
 
-function perm(arr) {
+function middlePermutation(s) {  
+  let arr = permut(s)
+  
+    console.log(arr.indexOf('bac'));    
+  
+  return arr[(arr.length/2)]
+}
+
+const perm = xs => {
+  let ret = [];
+  for (let i = 0; i < xs.length; i = i + 1) {
+    let rest = perm(xs.slice(0, i).concat(xs.slice(i + 1)));
+    if (!rest.length) {
+      ret.push([xs[i]].join(''))
+    } else {
+      for (let j = 0; j < rest.length; j = j + 1) {
+        ret.push(([xs[i]].concat(rest[j])).join(''))
+      }
+    }
+  }
+  return ret
+};
+
+//console.log(perm("abcd"))
+console.log(middlePermutation('abc'));
+
+//cxgdba -> cgxdba
+
+
+function perm1(arr) {
   if (arr.length > 1) {
 
-      let beg = arr[0];
-      let arr1 = perm(arr.slice(1));
-      let arr2 = [];
-      let l = arr1[0].length;
+    let beg = arr[0];
+    let arr1 = perm(arr.slice(1));
+    let arr2 = [];
+    let l = arr1[0].length;
 
-      for(let i=0; i < arr1.length; i++) 
-          for(let j=0; j <= l; j++) 
-              arr2.push(arr1[i].slice(0, j).concat(beg, arr1[i].slice(j)));
-      return arr2;
+    for (let i = 0; i < arr1.length; i++)
+      for (let j = 0; j <= l; j++)
+        arr2.push(arr1[i].slice(0, j).concat(beg, arr1[i].slice(j)));
+    return arr2;
   } else return [arr];
 }
 /**************************************** */
@@ -402,7 +419,7 @@ function make(arr, el) {
   var len = arr.length;
   var res = [];
 
-  for(i = len; i >= 0; i--) {
+  for (i = len; i >= 0; i--) {
     res.push(
       ([]).concat(
         arr.slice(0, i),
@@ -419,14 +436,16 @@ function combinations(arr) {
   var prev, curr, el, i;
   var len = arr.length;
 
-  curr = [[arr[0]]];
+  curr = [
+    [arr[0]]
+  ];
 
-  for(i = 1; i < len; i++) {
+  for (i = 1; i < len; i++) {
     el = arr[i];
     prev = curr;
     curr = [];
 
-    prev.forEach(function(item) {
+    prev.forEach(function (item) {
       curr = curr.concat(
         make(item, el)
       );
@@ -436,9 +455,9 @@ function combinations(arr) {
   return curr;
 }
 /******************************************************************** */
-m = 'abcd'
-console.log( combinations(m) )
+/*m = 'abcd'
+console.log(combinations(m))
 
 //console.log(perm('abcdef'));
 
-//console.log(middlePermutation('abcd'))
+//console.log(middlePermutation('abcd'))*/
