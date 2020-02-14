@@ -47,3 +47,50 @@ console.log(felix_felicis,shrinking_solution,new_potion);*/
 //new_potion.volume  ==  19
 
 
+function solution(list){
+	let str = '',
+	tArr = [], 
+	fl = false
+
+	for (let i = 0; i < list.length; i++) {
+		if (fl) {			
+			tArr.push(list[i])
+			fl = false
+		}
+		if ((Math.abs(list[i + 1] - list[i])) == 1) {
+			
+			tArr.push(list[i])
+			fl = true		
+		
+
+		}else if ((Math.abs(list[i + 1] - list[i])) != 1) {
+			if (tArr.length == 2){
+				str += tArr[0] + ',' + tArr[tArr.length - 1] + ','
+				tArr = []
+			} else if(tArr.length>2){
+				str += tArr[0] + '-' + tArr[tArr.length - 1] + ','
+				tArr = []
+			}else{
+				str += list[i] + ','
+			}
+		}		
+	}
+	return str.slice(0, str.length - 1)
+}
+/*
+function solution(list){
+   for(var i = 0; i < list.length; i++){
+      var j = i;
+      while(list[j] - list[j+1] == -1) j++;
+      if(j != i && j-i>1) list.splice(i, j-i+1, list[i] +'-'+list[j]);
+  }
+  return list.join();
+} 
+function solution(nums){
+ nums = nums.map((v, i) => nums[i - 1] == v - 1 && nums[i + 1] == v + 1 ? '-' : v);
+    return nums.filter((v, i) => v != '-' || nums[i - 1] != '-').join(',').replace(/,-,/g, '-');
+}
+*/
+//console.log(Math.abs(-2 - -3));
+console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
+   // returns "-6,-3-1,3-5,7-11,14,15,17-20"
