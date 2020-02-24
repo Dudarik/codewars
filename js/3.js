@@ -179,65 +179,60 @@ ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228
   }
   return totalDistance
 }*/
-genBinArr = (arrLen, n, s) => {
+genBinArr = (arrLen, n, s)=>{
 	let bArr = [],
-		cnt = 1
+	cnt = 1
 	console.log(arrLen, n, s, 't');
-
-	for (let i = 0; i < arrLen; i++) {
+	
+	for (let i = 0; i < arrLen; i++) {		
 		//bArr[i] = (i >= s - 1) ? (cnt <= n) ? 1 :0 :0
 		bArr[i] = 0
-		if (i >= s - 1) {
-			if (cnt <= n) {
+		if (i >= s - 1 ){
+			if (cnt <= n){
 				bArr[i] = 1
-				cnt++
+				cnt++			
 			}
 		}
-
+		
 	}
 
 	return bArr
 }
 
-//console.log( genBinArr(7,3,0) );
+//console.log( genBinArr(7,3,3) );
 
 sumArr = (arr) => {
 	let n = 3,
 		bArr = [],
 		tArr = [],
 		bSum = 0,
-		tSum = 0,
-		bArrLen = arr.length - 1
+		tSum = 0
 
-	bArr = genBinArr(arr.length, n, 0)
+	bArr = genBinArr(arr.length, n, 0)	
 
-	let i = 1, //указатель на текущий старт
-		e = i, //указатель на следующую единицу
-		p = n - e //указатель на текущий обмен
+	
+	let i = 1,
+		e = i + 1,
+		p = n - e
 
 	while (true) {
-		if (i == 7 /*bArr.length - n*/ ) break
-		//if (!tArr.includes(bArr.join()))
-		tArr.push(bArr.join())
+		if (i == 7 /*bArr.length - n*/  ) break
+		
+		tArr.push(Array.from(bArr))		
 
-		if (p < bArrLen) {
-
-			[bArr[p], bArr[p + 1]] = [bArr[p + 1], bArr[p]]
+		if (p < bArr.length - 1) {
+			
+			[bArr[p], bArr[p + 1]] = [bArr[p+1], bArr[p]]			
 			p++
-			console.log(bArr, 'blen=',bArrLen, 'p=',p, 'i=',i, 'e=',e, 'r');
+			
 			//console.log(i, p, bArr.length);			
-		} else if (p == bArrLen && e < bArrLen - n) {	
-
+		} else if (p == bArr.length - 1 && e < bArr.length - n - 1 ){
+			console.log(bArr, p, i, e);
+			
 			e++
-			p = i + n - e - 1
-			console.log(bArr, p, i, e, 'N');
+			p = i			
 		} else {
 			i++
-			e = i
-			p = i + 1
-			console.log('p======',p);
-			
-			bArr = genBinArr(arr.length, n, i)
 			//console.log(i);			
 			/*e = i + 1
 			p = n - e
@@ -245,15 +240,15 @@ sumArr = (arr) => {
 
 			//console.log('new array');
 			//console.log(tArr);
-
-
+			
+			
 		} //if (e == bArr.length - n - 1)
 	}
 
 	/*for (let i = 0; i < arr.length; i++) {
 		if (bArr[i]) tSum += arr[i]
 	}*/
-	console.log(tArr);
+console.log(tArr);
 	//return bSum
 }
 
