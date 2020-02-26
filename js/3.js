@@ -93,9 +93,6 @@ function solution(nums){
 */
 //console.log(Math.abs(-2 - -3));
 console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
-<<<<<<< HEAD
-// returns "-6,-3-1,3-5,7-11,14,15,17-20"
-=======
 // returns "-6,-3-1,3-5,7-11,14,15,17-20"
 
 
@@ -267,4 +264,3 @@ sumArr(ls)
 //console.log();
 
 //console.log(sumArr([50, 55, 56, 57, 58]));
->>>>>>> ffd62bb66ca8cb1eb4dfa8d007a933cc741bc475
