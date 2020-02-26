@@ -1,20 +1,20 @@
 class Potion {
 	// magic goes here...
 	constructor(arrColor, volume) {
-		
+
 		this.color = arrColor
-		this.volume = volume	
+		this.volume = volume
 	}
 
-	 mix(shrinking_solution) {
+	mix(shrinking_solution) {
 		let nColor = []
 		let nVol = this.volume + shrinking_solution.volume
 
-		for (let i = 0; i < this.color.length; i++) 			
-			nColor.push(Math.ceil(((this.color[i] * this.volume) + (shrinking_solution.color[i] * shrinking_solution.volume)) / nVol))					
-		
+		for (let i = 0; i < this.color.length; i++)
+			nColor.push(Math.ceil(((this.color[i] * this.volume) + (shrinking_solution.color[i] * shrinking_solution.volume)) / nVol))
+
 		return new Potion(nColor, nVol)
-	}		
+	}
 }
 /*
 let potions = [
@@ -47,33 +47,33 @@ console.log(felix_felicis,shrinking_solution,new_potion);*/
 //new_potion.volume  ==  19
 
 
-function solution(list){
+function solution(list) {
 	let str = '',
-	tArr = [], 
-	fl = false
+		tArr = [],
+		fl = false
 
 	for (let i = 0; i < list.length; i++) {
-		if (fl) {			
+		if (fl) {
 			tArr.push(list[i])
 			fl = false
 		}
 		if ((Math.abs(list[i + 1] - list[i])) == 1) {
-			
-			tArr.push(list[i])
-			fl = true		
-		
 
-		}else if ((Math.abs(list[i + 1] - list[i])) != 1) {
-			if (tArr.length == 2){
+			tArr.push(list[i])
+			fl = true
+
+
+		} else if ((Math.abs(list[i + 1] - list[i])) != 1) {
+			if (tArr.length == 2) {
 				str += tArr[0] + ',' + tArr[tArr.length - 1] + ','
 				tArr = []
-			} else if(tArr.length>2){
+			} else if (tArr.length > 2) {
 				str += tArr[0] + '-' + tArr[tArr.length - 1] + ','
 				tArr = []
-			}else{
+			} else {
 				str += list[i] + ','
 			}
-		}		
+		}
 	}
 	return str.slice(0, str.length - 1)
 }
@@ -93,4 +93,4 @@ function solution(nums){
 */
 //console.log(Math.abs(-2 - -3));
 console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
-   // returns "-6,-3-1,3-5,7-11,14,15,17-20"
+// returns "-6,-3-1,3-5,7-11,14,15,17-20"
